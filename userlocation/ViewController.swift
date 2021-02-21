@@ -9,12 +9,28 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController {
+class MapScreen: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    
+    let locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    func setupLocationManager(){
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func checkLocationService(){
+        
+        if CLLocationManager.locationServicesEnabled(){
+            setupLocationManager()
+        }else{
+            
+        }
     }
 
 
@@ -30,5 +46,6 @@ extension MapScreen: CLLocationManagerDelegate {
     {
         
     }
+    
 
 }
